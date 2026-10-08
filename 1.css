@@ -1,0 +1,27 @@
+/* h1 -> selector */
+
+h1{
+    color: red;    
+}
+
+/* class */
+
+/* .(dot)class_name */
+
+.main{
+
+    font-size: 20px;
+    color: rgb(79, 30, 177);
+    align-items: center;
+
+}
+
+/* id -> #(has) */
+
+#second{
+
+    color: greenyellow;
+    font-family: 'Courier New', Courier, monospace, bold, ;
+    background-color: black;
+
+}
