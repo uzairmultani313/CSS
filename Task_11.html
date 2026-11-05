@@ -1,0 +1,220 @@
+<!----DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navbar</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; }
+
+    .navbar {
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 25px;
+    }
+
+    .logo {
+        color: #00e5ff;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+    }
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .nav-links a:hover {
+        color: gray;
+    }
+
+    /* Hamburger icon chhupao jab screen badi ho */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: white;
+        display: block;
+    }
+
+    /* --- Responsive Part --- */
+    /* Jab screen 700px se chhoti hogi */
+    @media (max-width: 700px) {
+        .hamburger {
+            display: flex; /* icon dikhao */
+        }
+
+        .nav-links {
+            display: none; /* links chhupao */
+            position: absolute;
+            top: 55px;
+            left: 0;
+            width: 100%;
+            background: black;
+            flex-direction: column;
+            padding: 15px;
+        }
+
+        .nav-links.active {
+            display: flex; /* JS se click par dikhega */
+        }
+    }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">Navbar</div>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Disabled</a></li>
+    </ul>
+
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+
+<script>
+    // Hamburger par click karne par menu khulega/band hoga
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script>
+
+</body>
+</html--->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navbar Without JS</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; }
+
+    .navbar {
+        background: black;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 25px;
+    }
+
+    .logo {
+        color: #00e5ff;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+    }
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Checkbox ko chhupa do */
+    #menu-toggle {
+        display: none;
+    }
+
+    /* Hamburger icon */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: white;
+        display: block;
+    }
+
+    /* Responsive - Jab screen chhoti ho */
+    @media (max-width: 700px) {
+        .hamburger {
+            display: flex;
+        }
+
+        .nav-links {
+            display: none;
+            position: absolute;
+            top: 58px;
+            left: 0;
+            width: 100%;
+            background: black;
+            flex-direction: column;
+            padding: 15px;
+        }
+
+        /* Magic Line - Jab checkbox tick ho to menu dikhao */
+        #menu-toggle:checked + .hamburger + .nav-links {
+            display: flex;
+        }
+    }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">Navbar</div>
+
+    <!-- 1. Hidden Checkbox -->
+    <input type="checkbox" id="menu-toggle">
+
+    <!-- 2. Hamburger Label - Ispe click karne se checkbox tick hoga -->
+    <label for="menu-toggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <!-- 3. Menu Links -->
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Disabled</a></li>
+    </ul>
+</nav>
+
+</body>
+</html>

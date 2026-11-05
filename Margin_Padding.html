@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* margin -> empty space of an elements's */
+    /* padding  -> empty space in side of an elements's */
+
+    div{
+        border : solid 2px;
+        border-color: blue;
+        width: fit-content;
+        text-align: center;
+    }
+    #btn1{
+        margin-right: 20px;
+    }
+    btn2{
+        margin-left: 20px;
+        margin-right: 30px;
+    }
+    #box1{
+        margin-top: 15px;
+         margin-bottom: 10px;
+        margin-right: 20px;
+        margin-left: 30px;
+
+
+        padding-top: 10px;
+        padding-bottom: 20px;
+        padding-right: 30px;
+        padding-left: 40px;
+    }
+
+    #box2{
+        /* margin overlap only in block elements */
+        margin-top: 20px;
+    }
+
+    #box3{
+
+        /* margin all sides -> top right bottom left  */
+        margin: 20px;
+        padding: 20px;
+    }
+
+
+    #box5{
+
+        /*top-bottom right-left */
+        margin: 20px 40px;
+        padding: 20px 40px;
+    }
+
+
+    #box7{
+        /* clockwise margin */
+            /*  top right bottom left */
+        margin: 10px 20px 30px 40px;
+        padding: 10px 20px 30px 40px;
+    }
+
+    #box9{
+            /*  top right-left bottom  */
+        margin: 10px 20px 30px;
+        padding: 10px 20px 30px;
+    }
+
+    #box10{
+        /* margin auto only works with the block elements */
+        margin: auto;
+    }
+
+    #btn3{
+        margin: auto;
+    }    
+
+</style>
+<body>
+    <button id="btn1">Btn 1</button>
+    <button id="btn2">Btn 2</button>
+    <!-- <button id="btn3">Btn 3</button> -->
+
+    <div id="box1">Box 1</div>
+    <div id="box2">Box 2</div>
+    <div id="box3">Box 3</div>
+    <div id="box4">Box 4</div>
+    <div id="box5">Box 5</div>
+    <div id="box6">Box 6</div>
+    <div id="box7">Box 7</div>
+    <div id="box8">Box 8</div>
+    <div id="box9">Box 9</div>
+    <div id="box10">Box 10</div>
+
+    <button id="btn3">Btn 3</button>
+</body>
+</html>

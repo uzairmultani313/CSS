@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+<style>
+     *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            height: 100vh;
+            background-image: linear-gradient(#ddf33a 50%,#4a7fe5 50%);
+            display: flex;
+           /* margin-left: 25%;*/
+          /* justify-content: center;
+            align-items: center;*/
+        }
+        button{
+            margin: 10px;
+            padding-right: 20px;
+            padding-left: 20px;
+            border-radius: 5px;
+            background-color: #4a7fe5;
+            color: white;
+    
+        }
+       #I{
+            border-top: none;
+            border-left: none;
+            border-right: none;
+       } 
+       #task-list{
+        background-color: rgb(225, 238, 249);
+        /*display: flex;*/
+        justify-content: space-between;
+        margin-top: 20px;
+        font-size: 18px;
+        border-radius: 5px;
+        overflow: hidden;
+        width: fit-content;
+       }
+       .A,h1{
+            font-size: 50px;
+            margin-top: 25px;
+
+       }   
+       #h{
+        color: white;
+       }
+       #E{
+            text-decoration: line-through;
+       }
+
+       #task-count{
+        color: blue;
+
+       }
+
+    
+
+
+
+</style>
+<body class="d-flex justify-content-center align-items-center">
+    <div class="card col-mb-4 p-5 mt-5 ">
+
+        <div class="mb-3">
+            <input id="I" placeholder="Review Presentation">&nbsp;<button>Add</button>
+            
+            <h6>You have <span id="task-count">3</span> task(s) to complete</h6>
+
+          </div><br>
+
+        <div class="mb-3" id="task-list">
+            <input type="radio" value="button">&nbsp;&nbsp;Edit Video&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-pen-to-square" style="color: rgb(116, 192, 252);"></i><i class="fa-regular fa-trash-can" style="color: rgb(239, 13, 13);"></i><br> 
+            <input type="radio" value="botton">&nbsp;&nbsp;<span id="E">Buy Eggs & Milk</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-pen-to-square" style="color: rgb(116, 192, 252);"></i><i class="fa-regular fa-trash-can" style="color: rgb(239, 13, 13);"></i><br>
+            <input type="radio" value="button">&nbsp;&nbsp;Organize Files&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa-solid fa-pen-to-square" style="color: rgb(116, 192, 252);"></i><i class="fa-regular fa-trash-can" style="color: rgb(239, 13, 13);"></i><br> 
+            <input type="radio" value="botton">&nbsp;&nbsp;Write Blog Post&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-pen-to-square" style="color: rgb(116, 192, 252);"></i><i class="fa-regular fa-trash-can" style="color: rgb(239, 13, 13);"></i><br>
+              
+        </div>
+        
+        
+        
+    </div>
+    <div class="col-6 mb-5  p-5">
+        
+        <div class="A">
+            <h3>With Free Source  code</h3>
+            <h1><b>TO DO LIST</b></h1><br>
+            <h2 id="h">HTML , CSS , Javascript</h2>
+            
+        </div>
+
+        </div>
+
+
+</body>
+</html>

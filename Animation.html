@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<!-- 
+    transform ->it allows you to modify an a element shape, size, position without altering the doc flow
+-->
+
+<body>
+
+    <style>
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;    
+    }
+
+    .A{
+        position: relative;
+        width: fit-content;
+        margin: 10rem auto;
+        background-image:linear-gradient(rgb(129, 129, 214) , rgb(228, 138, 228)) ;
+    }
+    #text{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 2rem;
+        font-weight: 550;
+    }
+
+    #B{
+        border: solid;
+        height: 50px;
+        width: 100px;
+
+        /* Transition time; */
+        transition: 2s;
+    }
+    #B:hover{
+        width: 250px;
+
+         /* transform: translateX(100px); */
+        /* transform: translateX(-100px); */
+        /* transform: translateY(-100px); */
+        /* transform: translateY(100px); */
+
+        /* scale -> smaller or larger */
+
+        /* transform: scaleY(2); */
+        /* transform: scaleX(2); */
+        /* transform: scale(1.5, 5); */
+        
+
+
+        /* roatate */
+
+        /* transform: rotateX(180deg); */
+        /* transform: rotateY(180deg); */
+        /* transform: rotateZ(180deg); */
+        transform: rotate(360deg);
+
+
+        /* skew */
+
+        /* transform: skewX(45deg); */
+        /* transform: skewY(45deg); */
+         /* transform: skew(45deg, 90deg);  */
+
+
+
+    }
+
+    
+    </style>
+    <div class="A">
+        <div class="B" id="B">
+            <h1 id="text">Multani</h1>
+        </div>
+    </div>
+</body>
+</html>

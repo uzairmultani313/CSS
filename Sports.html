@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1110">
+    <meta name="description" content="Gear up for your next personal best with performance-ready sports equipment from Fieldwork.">
+    <title>Fieldwork — Gear up. Get out there.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: dark;
+            --ink: #f4f4ed;
+            --muted: #a8aea5;
+            --bg: #0b1110;
+            --surface: #121a17;
+            --surface-light: #1b2520;
+            --line: rgba(244, 244, 237, .13);
+            --lime: #c8f169;
+            --orange: #ff764a;
+            --font-body: "DM Sans", sans-serif;
+            --font-display: "Space Grotesk", sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--font-body);
+            -webkit-font-smoothing: antialiased;
+        }
+        body.modal-open { overflow: hidden; }
+        a { color: inherit; text-decoration: none; }
+        button, input, textarea { font: inherit; }
+        button, a { -webkit-tap-highlight-color: transparent; }
+        button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 2px solid var(--lime);
+            outline-offset: 4px;
+        }
+        img { display: block; max-width: 100%; }
+        .shell { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--lime);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+        .eyebrow::before { width: 18px; height: 1px; background: currentColor; content: ""; }
+        .site-header {
+            position: sticky;
+            z-index: 10;
+            top: 0;
+            border-bottom: 1px solid var(--line);
+            background: rgba(11, 17, 16, .88);
+            backdrop-filter: blur(18px);
+        }
+        .nav {
+            display: flex;
+            min-height: 76px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+        }
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-display);
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: -.06em;
+        }
+        .brand-mark {
+            display: grid;
+            width: 30px;
+            height: 30px;
+            place-items: center;
+            border-radius: 9px;
+            background: var(--lime);
+            color: var(--bg);
+            font-size: 19px;
+            line-height: 1;
+            transform: rotate(-8deg);
+        }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a { color: var(--muted); font-size: 13px; transition: color .2s ease; }
+        .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--ink); }
+        .nav-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 10px 15px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: border-color .2s ease, background .2s ease;
+        }
+        .nav-action:hover { border-color: var(--lime); background: rgba(200, 241, 105, .08); }
+        .nav-action span { color: var(--lime); }
+
+        .hero {
+            position: relative;
+            display: grid;
+            min-height: 590px;
+            align-items: center;
+            overflow: hidden;
+            isolation: isolate;
+        }
+        .hero::before {
+            position: absolute;
+            z-index: -2;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(11, 17, 16, .98) 0%, rgba(11, 17, 16, .88) 38%, rgba(11, 17, 16, .28) 100%),
+                linear-gradient(0deg, var(--bg) 0%, transparent 24%, transparent 82%, var(--bg) 100%),
+                url("https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=2000&q=85") center 43% / cover;
+            content: "";
+            animation: hero-reveal 1.2s ease both;
+        }
+        .hero::after {
+            position: absolute;
+            z-index: -1;
+            top: 13%;
+            right: -80px;
+            width: min(43vw, 510px);
+            aspect-ratio: 1;
+            border: 1px solid rgba(200, 241, 105, .22);
+            border-radius: 50%;
+            box-shadow: 0 0 0 45px rgba(200, 241, 105, .025), 0 0 0 90px rgba(200, 241, 105, .02);
+            content: "";
+            animation: orbit 28s linear infinite;
+        }
+        .hero-content { max-width: 670px; padding-block: 80px; animation: rise-in .8s .12s both; }
+        h1, h2, h3, p { margin-top: 0; }
+        h1 {
+            max-width: 680px;
+            margin-block: 20px 18px;
+            font-family: var(--font-display);
+            font-size: clamp(58px, 9vw, 108px);
+            font-weight: 600;
+            letter-spacing: -.09em;
+            line-height: .91;
+        }
+        h1 em { color: var(--lime); font-style: normal; }
+        .hero-copy { max-width: 405px; color: #c2c8be; font-size: 15px; line-height: 1.75; }
+        .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; margin-top: 30px; }
+        .button {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            gap: 11px;
+            border: 0;
+            border-radius: 999px;
+            padding: 0 21px;
+            background: var(--lime);
+            color: var(--bg);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+        }
+        .button:hover { transform: translateY(-2px); background: #d6ff7e; box-shadow: 0 9px 30px rgba(200, 241, 105, .17); }
+        .text-link { color: var(--ink); font-size: 12px; font-weight: 600; }
+        .text-link span { margin-left: 6px; color: var(--lime); }
+        .hero-note { display: flex; align-items: center; gap: 10px; margin-top: 45px; color: var(--muted); font-size: 11px; }
+        .avatar-stack { display: flex; padding-left: 5px; }
+        .avatar-stack img { width: 25px; height: 25px; margin-left: -5px; border: 2px solid var(--bg); border-radius: 50%; object-fit: cover; }
+        .hero-note strong { color: var(--ink); font-weight: 600; }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-block: 1px solid var(--line);
+        }
+        .benefit { display: flex; align-items: center; gap: 14px; padding: 23px 25px; }
+        .benefit + .benefit { border-left: 1px solid var(--line); }
+        .benefit-icon { color: var(--lime); font-size: 19px; }
+        .benefit strong, .benefit small { display: block; }
+        .benefit strong { font-size: 12px; }
+        .benefit small { margin-top: 4px; color: var(--muted); font-size: 10px; }
+
+        .section { padding-block: 102px; }
+        .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 34px; }
+        .section-heading h2, .contact-copy h2 {
+            margin-block: 12px 0;
+            font-family: var(--font-display);
+            font-size: clamp(36px, 5vw, 57px);
+            font-weight: 500;
+            letter-spacing: -.07em;
+            line-height: 1;
+        }
+        .section-heading > p { max-width: 260px; margin-bottom: 2px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+        .products-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+        .product-card {
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: var(--surface);
+            animation: rise-in .65s both;
+            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+        }
+        .product-card:hover { transform: translateY(-5px); border-color: rgba(200, 241, 105, .43); box-shadow: 0 18px 48px rgba(0, 0, 0, .2); }
+        .product-card:nth-child(2) { animation-delay: .07s; }
+        .product-card:nth-child(3) { animation-delay: .14s; }
+        .product-card:nth-child(4) { animation-delay: .21s; }
+        .product-card:nth-child(5) { animation-delay: .28s; }
+        .product-card:nth-child(6) { animation-delay: .35s; }
+        .product-image { position: relative; overflow: hidden; aspect-ratio: 1.36; background: #202a25; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2,.7,.3,1); }
+        .product-card:hover .product-image img { transform: scale(1.055); }
+        .tag {
+            position: absolute;
+            top: 13px;
+            left: 13px;
+            border: 1px solid rgba(244, 244, 237, .17);
+            border-radius: 999px;
+            padding: 6px 9px;
+            background: rgba(11, 17, 16, .7);
+            color: var(--ink);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            backdrop-filter: blur(8px);
+        }
+        .product-details { padding: 18px; }
+        .product-category { color: var(--muted); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+        .product-title-row { display: flex; align-items: start; justify-content: space-between; gap: 12px; margin-top: 8px; }
+        .product-title-row h3 { margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 500; letter-spacing: -.04em; }
+        .rating { flex: none; color: var(--lime); font-size: 10px; }
+        .product-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--line); }
+        .price { font-size: 15px; font-weight: 700; }
+        .buy-button {
+            display: inline-flex;
+            min-height: 35px;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 0 13px;
+            background: transparent;
+            color: var(--ink);
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: 600;
+            transition: color .2s ease, border-color .2s ease, background .2s ease;
+        }
+        .buy-button:hover { border-color: var(--lime); background: var(--lime); color: var(--bg); }
+
+        .manifesto {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 57px 7%;
+            background:
+                linear-gradient(90deg, rgba(11, 17, 16, .97), rgba(11, 17, 16, .78)),
+                url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=80") center 44% / cover;
+        }
+        .manifesto h2 { max-width: 630px; margin-block: 15px 13px; font-family: var(--font-display); font-size: clamp(34px, 5vw, 58px); font-weight: 500; letter-spacing: -.075em; line-height: 1.02; }
+        .manifesto p { max-width: 445px; margin-bottom: 0; color: #c2c8be; font-size: 12px; line-height: 1.8; }
+        .manifesto .button { margin-top: 24px; }
+
+        .contact-section { padding-block: 40px 100px; }
+        .contact-panel { display: grid; grid-template-columns: .9fr 1.1fr; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+        .contact-copy { padding: 42px; background: linear-gradient(145deg, rgba(200, 241, 105, .07), transparent 65%); }
+        .contact-copy h2 { max-width: 340px; font-size: clamp(35px, 4vw, 48px); }
+        .contact-copy > p { max-width: 300px; margin-block: 15px 27px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+        .contact-info { display: grid; gap: 15px; color: #d8ddd4; font-size: 12px; }
+        .contact-info span { margin-right: 9px; color: var(--lime); }
+        .contact-form { display: grid; gap: 14px; padding: 42px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+        .field { display: grid; gap: 7px; }
+        .field label { color: #d8ddd4; font-size: 10px; font-weight: 600; }
+        .field input, .field textarea {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 12px 13px;
+            background: #0e1512;
+            color: var(--ink);
+            font-size: 12px;
+        }
+        .field input::placeholder, .field textarea::placeholder { color: #778078; }
+        .field textarea { min-height: 95px; resize: vertical; }
+        .contact-form .button { justify-self: start; }
+        .form-status { min-height: 16px; margin: 0; color: var(--lime); font-size: 11px; }
+
+        .site-footer { border-top: 1px solid var(--line); }
+        .footer-inner { display: flex; min-height: 82px; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 10px; }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a:hover { color: var(--ink); }
+
+        .modal-backdrop {
+            position: fixed;
+            z-index: 20;
+            inset: 0;
+            display: grid;
+            overflow-y: auto;
+            place-items: center;
+            padding: 20px;
+            background: rgba(3, 7, 5, .76);
+            backdrop-filter: blur(9px);
+        }
+        .modal-backdrop[hidden] { display: none; }
+        .payment-modal {
+            position: relative;
+            width: min(440px, 100%);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 28px;
+            background: #121a17;
+            box-shadow: 0 24px 90px rgba(0, 0, 0, .45);
+            animation: rise-in .24s ease both;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: grid;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--ink);
+            cursor: pointer;
+            font-size: 19px;
+        }
+        .payment-modal h2 { margin-block: 12px 5px; font-family: var(--font-display); font-size: 30px; font-weight: 500; letter-spacing: -.06em; }
+        .modal-subtitle { margin-bottom: 20px; color: var(--muted); font-size: 11px; }
+        .order-line { display: flex; justify-content: space-between; gap: 15px; padding-block: 15px; border-block: 1px solid var(--line); font-size: 12px; }
+        .order-line strong { color: var(--lime); }
+        .payment-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-block: 18px; }
+        .payment-option {
+            min-height: 42px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        .payment-option[aria-pressed="true"] { border-color: var(--lime); background: rgba(200, 241, 105, .09); color: var(--lime); }
+        .payment-demo-note { margin-block: 0 18px; color: var(--muted); font-size: 10px; line-height: 1.6; }
+        .payment-modal .button { width: 100%; }
+        .payment-status { margin: 13px 0 0; color: var(--lime); font-size: 11px; line-height: 1.6; }
+        .payment-status:empty { display: none; }
+        .success-mark { display: grid; width: 46px; height: 46px; margin-top: 20px; place-items: center; border-radius: 50%; background: rgba(200, 241, 105, .13); color: var(--lime); font-size: 23px; }
+
+        @keyframes rise-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes hero-reveal { from { opacity: .35; transform: scale(1.035); } to { opacity: 1; transform: scale(1); } }
+        @keyframes orbit { to { transform: rotate(360deg); } }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+        }
+        @media (max-width: 760px) {
+            .shell { width: min(100% - 32px, 560px); }
+            .nav { min-height: 68px; gap: 12px; }
+            .nav-links { gap: 15px; }
+            .nav-links a { font-size: 11px; }
+            .nav-action { padding: 9px 11px; font-size: 10px; }
+            .hero { min-height: 550px; }
+            .hero::before { background-position: 59% center; }
+            .hero::after { top: 10%; right: -180px; width: 420px; }
+            .hero-content { padding-block: 76px; }
+            .hero-copy { max-width: 360px; }
+            .benefit { gap: 9px; padding: 17px 10px; }
+            .benefit-icon { font-size: 15px; }
+            .benefit strong { font-size: 10px; }
+            .benefit small { font-size: 9px; line-height: 1.4; }
+            .section { padding-block: 76px; }
+            .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+            .product-details { padding: 13px; }
+            .product-title-row h3 { font-size: 14px; }
+            .product-bottom { margin-top: 14px; padding-top: 12px; }
+            .price { font-size: 13px; }
+            .buy-button { min-height: 32px; padding-inline: 10px; }
+            .contact-panel { grid-template-columns: 1fr; }
+            .contact-copy, .contact-form { padding: 27px; }
+            .contact-copy > p { margin-bottom: 20px; }
+            .contact-info { grid-template-columns: 1fr 1fr; gap: 12px; }
+        }
+        @media (max-width: 480px) {
+            .shell { width: calc(100% - 28px); }
+            .brand { gap: 7px; font-size: 16px; }
+            .brand-mark { width: 27px; height: 27px; }
+            .nav-links { gap: 11px; }
+            .nav-links a { font-size: 10px; }
+            .nav-action { gap: 5px; padding: 8px 9px; font-size: 9px; }
+            .hero { min-height: 515px; }
+            .hero::before { background-image: linear-gradient(90deg, rgba(11, 17, 16, .96), rgba(11, 17, 16, .73)), linear-gradient(0deg, var(--bg), transparent 32%), url("https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1200&q=80"); }
+            h1 { font-size: clamp(55px, 17vw, 75px); }
+            .hero-copy { max-width: 320px; font-size: 13px; }
+            .hero-note { flex-wrap: wrap; margin-top: 34px; font-size: 10px; }
+            .benefits { grid-template-columns: 1fr; }
+            .benefit { padding: 13px 6px; }
+            .benefit + .benefit { border-top: 1px solid var(--line); border-left: 0; }
+            .benefit strong { font-size: 11px; }
+            .section-heading { align-items: start; flex-direction: column; gap: 13px; }
+            .section-heading > p { max-width: 320px; }
+            .products-grid { gap: 10px; }
+            .product-image { aspect-ratio: 1.08; }
+            .tag { top: 8px; left: 8px; padding: 5px 7px; font-size: 8px; }
+            .product-category { font-size: 8px; }
+            .product-title-row { flex-direction: column; gap: 5px; }
+            .product-title-row h3 { font-size: 13px; }
+            .product-bottom { align-items: start; flex-direction: column; gap: 9px; }
+            .buy-button { width: 100%; justify-content: center; }
+            .manifesto { padding: 37px 23px; }
+            .contact-info { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-inner { align-items: start; flex-direction: column; justify-content: center; padding-block: 19px; }
+            .payment-modal { padding: 23px 19px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav shell" aria-label="Main navigation">
+            <a class="brand" href="#home" aria-label="Fieldwork home"><span class="brand-mark" aria-hidden="true">↗</span>fieldwork</a>
+            <div class="nav-links">
+                <a href="#home" aria-current="page">Home</a>
+                <a href="#products">Products</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a class="nav-action" href="#products">Explore gear <span aria-hidden="true">↗</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="shell">
+                <div class="hero-content">
+                    <span class="eyebrow">Made for your next move</span>
+                    <h1>Gear up.<br>Get <em>out there.</em></h1>
+                    <p class="hero-copy">Thoughtful sports essentials for early starts, long sessions and every little win in between.</p>
+                    <div class="hero-actions">
+                        <a class="button" href="#products">Shop the collection <span aria-hidden="true">↗</span></a>
+                        <a class="text-link" href="#story">Our point of view <span aria-hidden="true">→</span></a>
+                    </div>
+                    <div class="hero-note">
+                        <span class="avatar-stack" aria-hidden="true">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=75" alt="">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&h=80&q=75" alt="">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=80&h=80&q=75" alt="">
+                        </span>
+                        <span><strong>4.9/5 from 2,000+</strong> everyday athletes</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="benefits shell" aria-label="Store benefits">
+            <div class="benefit"><span class="benefit-icon" aria-hidden="true">✳</span><span><strong>Built to go further</strong><small>Performance-ready picks</small></span></div>
+            <div class="benefit"><span class="benefit-icon" aria-hidden="true">↗</span><span><strong>Free shipping over ₹2,500</strong><small>On every qualifying order</small></span></div>
+            <div class="benefit"><span class="benefit-icon" aria-hidden="true">↺</span><span><strong>Easy 30-day returns</strong><small>Find your perfect fit</small></span></div>
+        </div>
+
+        <section class="section shell" id="products">
+            <div class="section-heading">
+                <div><span class="eyebrow">The good stuff</span><h2>Find your next favourite.</h2></div>
+                <p>Reliable gear, considered details and a little more reason to get moving.</p>
+            </div>
+            <div class="products-grid">
+                <article class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=900&q=80" alt="Cricket bat and ball ready for a match" loading="lazy"><span class="tag">Bestseller</span></div>
+                    <div class="product-details"><span class="product-category">Cricket · Pro series</span><div class="product-title-row"><h3>Pro Willow Cricket Bat</h3><span class="rating">★ 4.9</span></div><div class="product-bottom"><span class="price">₹8,999</span><button class="buy-button" type="button" data-product="Pro Willow Cricket Bat" data-price="8999">Buy now <span aria-hidden="true">↗</span></button></div></div>
+                </article>
+                <article class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=900&q=80" alt="Basketball on an indoor court" loading="lazy"><span class="tag">Court ready</span></div>
+                    <div class="product-details"><span class="product-category">Basketball · All court</span><div class="product-title-row"><h3>All-Court Basketball</h3><span class="rating">★ 4.8</span></div><div class="product-bottom"><span class="price">₹3,499</span><button class="buy-button" type="button" data-product="All-Court Basketball" data-price="3499">Buy now <span aria-hidden="true">↗</span></button></div></div>
+                </article>
+                <article class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=900&q=80" alt="Tennis racket and ball on a tennis court" loading="lazy"><span class="tag">Lightweight</span></div>
+                    <div class="product-details"><span class="product-category">Tennis · Carbon series</span><div class="product-title-row"><h3>Carbon Tennis Racket</h3><span class="rating">★ 4.9</span></div><div class="product-bottom"><span class="price">₹7,499</span><button class="buy-button" type="button" data-product="Carbon Tennis Racket" data-price="7499">Buy now <span aria-hidden="true">↗</span></button></div></div>
+                </article>
+                <article class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=80" alt="Dumbbells for a strength training session" loading="lazy"><span class="tag">Strength pick</span></div>
+                    <div class="product-details"><span class="product-category">Training · Home gym</span><div class="product-title-row"><h3>Adjustable Dumbbell Set</h3><span class="rating">★ 4.8</span></div><div class="product-bottom"><span class="price">₹12,999</span><button class="buy-button" type="button" data-product="Adjustable Dumbbell Set" data-price="12999">Buy now <span aria-hidden="true">↗</span></button></div></div>
+                </article>
+                <article class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1614632537423-1e6c2e7e0e0e?auto=format&fit=crop&w=900&q=80" alt="Football on a green pitch" loading="lazy"><span class="tag">Match day</span></div>
+                    <div class="product-details"><span class="product-category">Football · Match series</span><div class="product-title-row"><h3>Matchday Football</h3><span class="rating">★ 4.7</span></div><div class="product-bottom"><span class="price">₹2,999</span><button class="buy-button" type="button" data-product="Matchday Football" data-price="2999">Buy now <span aria-hidden="true">↗</span></button></div></div>
+                </article>
+                <article class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?auto=format&fit=crop&w=900&q=80" alt="Yoga mat set up for a workout" loading="lazy"><span class="tag">Studio favourite</span></div>
+                    <div class="product-details"><span class="product-category">Yoga · Everyday flow</span><div class="product-title-row"><h3>Everyday Yoga Mat</h3><span class="rating">★ 4.9</span></div><div class="product-bottom"><span class="price">₹1,999</span><button class="buy-button" type="button" data-product="Everyday Yoga Mat" data-price="1999">Buy now <span aria-hidden="true">↗</span></button></div></div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section shell" id="story">
+            <div class="manifesto">
+                <span class="eyebrow">A little less sitting around</span>
+                <h2>For the love of showing up.</h2>
+                <p>We believe the best kit is the kit that gets you out the door. No fuss, no finish line required. Just good gear for wherever you are on your way.</p>
+                <a class="button" href="#products">Find your gear <span aria-hidden="true">↗</span></a>
+            </div>
+        </section>
+
+        <section class="contact-section shell" id="contact">
+            <div class="contact-panel">
+                <div class="contact-copy">
+                    <span class="eyebrow">We're all ears</span>
+                    <h2>Let's talk about your next move.</h2>
+                    <p>Need a hand finding the right gear? Drop our crew a note and we'll point you in the right direction.</p>
+                    <div class="contact-info">
+                        <div><span aria-hidden="true">⌖</span>Mumbai, India</div>
+                        <div><span aria-hidden="true">✉</span>hello@fieldwork.example</div>
+                        <div><span aria-hidden="true">◷</span>Mon–Sat, 9am–6pm</div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-row">
+                        <div class="field"><label for="contact-name">Your name</label><input id="contact-name" name="name" type="text" placeholder="Alex Morgan" autocomplete="name" required></div>
+                        <div class="field"><label for="contact-email">Email address</label><input id="contact-email" name="email" type="email" placeholder="alex@example.com" autocomplete="email" required></div>
+                    </div>
+                    <div class="field"><label for="contact-message">How can we help?</label><textarea id="contact-message" name="message" placeholder="Tell us what's on your mind..." required></textarea></div>
+                    <button class="button" type="submit">Send a message <span aria-hidden="true">↗</span></button>
+                    <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner shell">
+            <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">↗</span>fieldwork</a>
+            <span>Good gear. Good days. © <span id="year"></span> Fieldwork</span>
+            <div class="footer-links"><a href="#products">Shop</a><a href="#contact">Get in touch</a></div>
+        </div>
+    </footer>
+
+    <div class="modal-backdrop" id="payment-backdrop" hidden>
+        <section class="payment-modal" role="dialog" aria-modal="true" aria-labelledby="payment-title" aria-describedby="payment-note">
+            <button class="modal-close" id="close-payment" type="button" aria-label="Close checkout">×</button>
+            <span class="eyebrow">Checkout preview</span>
+            <h2 id="payment-title">Your next move.</h2>
+            <p class="modal-subtitle">Review your pick and choose a payment method.</p>
+            <div class="order-line"><span id="order-product">Your gear</span><strong id="order-price">₹0</strong></div>
+            <div class="payment-options" role="group" aria-label="Choose payment method">
+                <button class="payment-option" type="button" aria-pressed="true">Card</button>
+                <button class="payment-option" type="button" aria-pressed="false">UPI</button>
+                <button class="payment-option" type="button" aria-pressed="false">Wallet</button>
+            </div>
+            <p class="payment-demo-note" id="payment-note">Demo only: no payment will be collected. Connect a payment provider before accepting real orders.</p>
+            <button class="button" id="pay-now" type="button">Continue with Card <span aria-hidden="true">↗</span></button>
+            <p class="payment-status" id="payment-status" role="status" aria-live="polite"></p>
+        </section>
+    </div>
+
+    <script>
+        (() => {
+            const backdrop = document.getElementById("payment-backdrop");
+            const productName = document.getElementById("order-product");
+            const productPrice = document.getElementById("order-price");
+            const paymentStatus = document.getElementById("payment-status");
+            const payButton = document.getElementById("pay-now");
+            const closeButton = document.getElementById("close-payment");
+            const paymentOptions = [...document.querySelectorAll(".payment-option")];
+            let selectedMethod = "Card";
+            let previousFocus = null;
+
+            document.getElementById("year").textContent = new Date().getFullYear();
+
+            const closePayment = () => {
+                backdrop.hidden = true;
+                document.body.classList.remove("modal-open");
+                paymentStatus.textContent = "";
+                previousFocus?.focus();
+            };
+
+            document.querySelectorAll(".buy-button").forEach((button) => {
+                button.addEventListener("click", () => {
+                    previousFocus = button;
+                    selectedMethod = "Card";
+                    paymentOptions.forEach((option, index) => option.setAttribute("aria-pressed", String(index === 0)));
+                    productName.textContent = button.dataset.product;
+                    productPrice.textContent = `₹${Number(button.dataset.price).toLocaleString("en-IN")}`;
+                    payButton.innerHTML = `Continue with ${selectedMethod} <span aria-hidden="true">↗</span>`;
+                    payButton.disabled = false;
+                    backdrop.hidden = false;
+                    document.body.classList.add("modal-open");
+                    closeButton.focus();
+                });
+            });
+
+            paymentOptions.forEach((option) => {
+                option.addEventListener("click", () => {
+                    selectedMethod = option.textContent.trim();
+                    paymentOptions.forEach((item) => item.setAttribute("aria-pressed", String(item === option)));
+                    payButton.innerHTML = `Continue with ${selectedMethod} <span aria-hidden="true">↗</span>`;
+                    paymentStatus.textContent = "";
+                });
+            });
+
+            payButton.addEventListener("click", () => {
+                paymentStatus.textContent = `Demo checkout complete for ${productName.textContent} using ${selectedMethod}. No payment was processed.`;
+                payButton.disabled = true;
+            });
+
+            closeButton.addEventListener("click", closePayment);
+            backdrop.addEventListener("click", (event) => {
+                if (event.target === backdrop) closePayment();
+            });
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape" && !backdrop.hidden) closePayment();
+            });
+
+            document.getElementById("contact-form").addEventListener("submit", (event) => {
+                event.preventDefault();
+                document.getElementById("contact-status").textContent = "Thanks! This demo form is ready to connect to a real inbox.";
+                event.currentTarget.reset();
+            });
+        })();
+    </script>
+</body>
+</html>

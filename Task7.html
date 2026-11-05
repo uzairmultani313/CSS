@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+  body {
+    background: #f3f3f3;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 40px;
+  }
+
+  /* Poora content beech mein */
+  .wrapper {
+    width: 1100px;
+    margin: auto;
+  }
+
+  /* Row: cards ek line mein */
+  .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    
+  }
+
+  /* Sabhi cards ka common style */
+  .card {
+    background: white;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  /* Upar wale 2 bade cards */
+  .big {
+    width: 530px;
+    padding: 60px 80px;
+    margin-left: 30px;
+  }
+  .big p {
+    font-size: 18px;
+    line-height: 32px;
+    color: #333;
+  }
+
+  /* Neeche wale 3 chhote cards */
+  .small {
+    width: 340px;
+  }
+  .small img {
+    width: 100%;
+    height: 178px;
+    object-fit: cover;
+    background: #ddd;
+    display: block;
+  }
+  .small h3 {
+    font-family: Georgia, serif;
+    font-weight: normal;
+    font-size: 25px;
+    color: #222;
+    padding: 30px;
+    margin: 0;
+  }
+
+  /* Golden link */
+  .link {
+    color: #a8721a;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 2px solid #a8721a;
+    padding-bottom: 6px;
+  }
+
+  /* Read more button + lines */
+  .more {
+    display: flex;
+    align-items: center;
+  }
+  .line {
+    flex: 1;
+    height: 2px;
+    background: #ccc;
+  }
+  .btn {
+    border: 2px solid #666;
+    color: #666;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 18px 25px;
+    margin: 0 40px;
+  }
+</style>
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <!-- Upar ki row: 2 bade cards -->
+    <div class="row">
+      <div class="card big">
+        <p>Minimalism is widely misunderstood and, for many people, it has lost its meaning. This is an...</p>
+        <a href="#" class="link">CONTINUE READING</a>
+      </div>
+
+      <div class="card big">
+        <p>but can you reach a point of...</p>
+        <a href="#" class="link">CONTINUE READING</a>
+      </div>
+    </div>
+
+    <!-- Neeche ki row: 3 chhote cards -->
+    <div class="row">
+      <div class="card small">
+        <img src=" https://plus.unsplash.com/premium_photo-1661899053699-f49eb65ca6a3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8V29sZiUyMGZhY2V8ZW58MHx8MHx8fDA%3D" alt="Wolf">
+        <h3>EXECUTION MAKE IT HAPPEN</h3>
+      </div>
+
+      <div class="card small">
+        <img src="https://images.unsplash.com/photo-1700052861935-64a082fc4f97?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fGVhZ2xlJTIwZmFjZSUyMHNpZGUlMjBwaWN8ZW58MHx8MHx8fDA%3D" alt="Eagle">
+        <h3>FOCUS STAY ON TARGET</h3>
+      </div>
+
+      <div class="card small">
+        <img src="https://media.istockphoto.com/id/2184601088/photo/male-white-lion-in-a-south-african-game-reserve.jpg?s=612x612&w=0&k=20&c=9yQDW-AVo2Fnw2ytpFux5FL_V9Jkr11Moygs2Z6VJ08=" alt="Lion">
+        <h3>CONTROL YOUR SELF</h3>
+      </div>
+    </div>
+
+    <!-- Read More button -->
+    <div class="more">
+      <div class="line"></div>
+      <a href="#" class="btn">READ MORE POSTS</a>
+      <div class="line"></div>
+    </div>
+
+  </div>
+</body>
+</html>

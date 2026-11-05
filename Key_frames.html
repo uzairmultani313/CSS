@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #01393e;
+    }
+
+    .A {
+        height: 40px;
+        background-image: linear-gradient(rgb(143, 143, 235), rgb(166, 216, 236));
+        width: 3px;
+        border-radius: 22px;
+
+        /* animation: name duration timing-function delay interation-count direction fill mode */
+
+        animation-name: first;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+
+    }
+
+    .down {
+        margin-top: 80px;
+        margin-left: 390px;
+        margin-bottom: 10px;
+        color: rgb(4, 233, 245);
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-weight: 800;
+        font-size: 25px;
+    }
+
+    .border {
+
+        border: solid;
+        color:cyan;
+        width: 50%;
+        height: fit-content;
+        border-radius: 22px;
+        margin-left: 380px;
+        margin-right: 200px;
+        box-shadow: 0px 5px 50px, 0px -5px 100px;
+
+
+    }
+
+    .box {
+        width: 50vw;
+        margin: 20px auto;
+        border: solid 3px;
+        border-radius: 20px;
+        color: cyan;
+        background-color: black;
+        margin-top: 50px;
+        height: 360px;
+        position: relative;
+
+        /* right side shadow */
+        /* box-shadow: 10px 0px 0px red;   */
+
+        /* bottom side shadow */
+        /* box-shadow: 0px 10px 0px cyan; */
+
+        /* Right and bottom side shadow give */
+        /* box-shadow: 10px 10px 0px cyan; */
+
+         /* Right and bottom side shadow give */
+        /* box-shadow: 10px 10px 10px 10px cyan; */
+
+        /*left and top shadow give up  */
+        /* box-shadow: -10px -10px 0px  cyan; */
+
+        box-shadow: -10px -10px 10px cyan, 10px 10px 10px cyan;
+        /* box-shadow: inset -10px -10px 0px  red; */
+        /* box-shadow: inset 10px 10px 0px  red; */
+
+
+    }
+
+    .text {
+        height: 70px;
+        width: 70px;
+        color: cyan;
+        top: 0;
+        left: 30px;
+        font-weight: bolder;
+        font-size: 30px;
+        position: absolute;
+
+        animation: 4s;
+        animation-name: second1;
+        animation-iteration-count: infinite;
+        /* animation-timing-function: cubic-bezier(1,1,1,1); */
+
+    }
+
+    /* This is first attribute key-frames */
+
+    @keyframes first {
+        from {
+            width: 20px;
+        }
+
+        to {
+            width: 100%;
+        }
+    }
+
+    @keyframes second1 {
+        0% {
+            top: 0;
+            left: 50px;
+        }
+
+        25% {
+            top: 278px;
+            left: 50px;
+            color: chartreuse;
+
+        }
+
+        50% {
+            top: 278px;
+            left: 400px;
+        }
+
+        75% {
+            top: 0;
+            left: 400px;
+        }
+
+        100% {
+            top: 0;
+            left: 50px;
+
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="down">Downloading</div>
+        <div class="border">
+            <div class="A"></div>
+        </div>
+
+        <div class="box">
+            <div class="text">
+                UZAIR MULTANI
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!-- box-shadow : h-offset v-offset blur spread color; -->

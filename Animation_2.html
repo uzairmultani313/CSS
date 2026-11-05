@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<Style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body{
+        background-image: linear-gradient(#024349);
+    }
+
+    #box-1 {
+        height: 50px;
+        background-image: linear-gradient(skyblue, rgb(72, 72, 167));
+        width: 30px;
+        
+        margin-right: 300px;
+        border: solid 2px;
+        border-radius: 22px;
+
+
+        /* transition-duration:ms; */
+        /* transition-duration: 2000ms; */
+        /* transition-duration: 1s; */
+
+
+         /* transition-timing-function: ease-in; -> Starts Slowly and speed up */
+        /* transition-timing-function: ease-out; -> Starts Quick and slows down */
+        /* transition-timing-function: ease-in-out; -> Start slowly, speed up, slow down end  */
+        transition-timing-function: ease;
+
+        transition: 2s;
+    }
+
+    .down {
+        font-size: large;
+        justify-content: center;
+        align-items: center;
+        margin-top: 200px;
+        margin-left: 200px;
+        color:rgb(8, 246, 163);
+        font-weight: 800;
+        font-size:35px;
+        margin-bottom: 20px;
+    }
+
+    #box-1:hover {
+        width: 100%;
+
+    }
+
+    .line {
+        border: solid;
+        /* width: 100%; */
+        height:fit-content;
+        border-radius: 22px;
+        margin-left: 200px;
+        margin-right:200px ;
+        color:aqua;
+        box-shadow: 0px 8px 5px , -0px -8px 3px;
+        
+
+    }
+
+</Style>
+
+<body>
+    <div class="A">
+        <div class="down">
+            <h3>Downloading....</h3>
+        </div>
+        <div class="line">
+            <div class="box" id="box-1"></div>
+        </div>
+    </div>
+</body>
+
+</html>
